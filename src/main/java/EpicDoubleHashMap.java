@@ -22,11 +22,36 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         SecondMap.put(key, value2);
     }
 
+    public void removeFirstType(K key){
+        FirstMap.remove(key);
+    }
+
+    public void removeSecondType(K key){
+        SecondMap.remove(key);
+    }
+
+    public void removeTwoTypes(K key){
+        FirstMap.remove(key);
+        SecondMap.remove(key);
+    }
+
     public HashMap<K, V> getFirstMap() {
         return this.FirstMap;
     }
 
     public HashMap<K, T> getSecondMap() {
         return this.SecondMap;
+    }
+
+    public String mapWithMoreValues(){
+        if (FirstMap.size() > SecondMap.size()){
+            return "First Map has more values than second map.";
+        }
+        else if (FirstMap.size() < SecondMap.size()){
+            return "Second Map has more values than first map.";
+        }
+        else{
+            return "Both maps has the same size";
+        }
     }
 }
