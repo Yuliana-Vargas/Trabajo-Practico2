@@ -22,6 +22,13 @@ public class Main {
             //map.addSecondType(3,"horse"); //The value horse couldn't be added because the key 3 already has a value assigned to it.
 
 
+            //---------GET
+            System.out.println(map.getFirstType(1));
+            System.out.println(map.getFirstType(3));
+            System.out.println(map.getSecondType(2));
+            System.out.println(map.getSecondType(3));
+
+
             //---------REMOVE - RemoveItemWithNonExistentKey
             map.addFirstType(4, 4);
             map.addSecondType(5, "pig");

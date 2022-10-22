@@ -19,14 +19,12 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         }
         firstMap.put(key, value);
     }
-
     public void addSecondType(K key, T value) throws ExistingKeyException {
         if (secondMap.containsKey(key) || firstMap.containsKey(key)) {
             throw new ExistingKeyException("The value " + value +" couldn't be added because the key " + key + " already has a value assigned to it.");
         }
         secondMap.put(key, value);
     }
-
     public void addTwoTypes(K key, V value1, T value2) throws ExistingKeyException{
         if (firstMap.containsKey(key) || secondMap.containsKey(key)) {
             throw new ExistingKeyException("The values " + value1 +" and "+ value2 +" couldn't be added because the key " + key + " already has a value assigned to it.");
@@ -34,6 +32,16 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         firstMap.put(key, value1);
         secondMap.put(key, value2);
     }
+
+
+    //--------------GET ITEM
+    public V getFirstType(K key) {
+        return firstMap.get(key);
+    }
+    public T getSecondType(K key) {
+        return secondMap.get(key);
+    }
+
 
     //-----------REMOVE ITEM
     public void removeFirstType(K key) throws RemoveItemWithNonExistentKeyException {
