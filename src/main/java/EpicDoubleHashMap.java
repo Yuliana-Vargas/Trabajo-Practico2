@@ -88,4 +88,21 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
             return "Both maps has the same size";
         }
     }
+    public String timesRepeatedValue(K key1){
+        int valueVRepeated = 0;
+        int valueTRepeated = 0;
+        V valueV = firstMap.get(key1);
+        T valueT = secondMap.get(key1);
+        for( K key: firstMap.keySet()){
+            if (firstMap.get(key).equals(valueV)) {
+                valueVRepeated++;
+            }
+        }
+        for( K key: secondMap.keySet()){
+            if (secondMap.get(key).equals(valueT)) {
+                valueTRepeated++;
+            }
+        }
+        return "The associated value to the key " + key1 + " is repeated "+ (valueVRepeated+valueTRepeated-1) + " times";
+    }
 }

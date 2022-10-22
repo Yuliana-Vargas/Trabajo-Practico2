@@ -29,8 +29,8 @@ public class Main {
             System.out.println("The value is " + map.getSecondType(2));
             System.out.println("The value is " + map.getSecondType(3));
 
-            //System.out.println(map.getFirstType(100)); //The value associated to the key 100 couldn't be get because it doesn't exist.
-            //System.out.println(map.getSecondType(100)); //The value associated to the key 100 couldn't be get because it doesn't exist.
+            //System.out.println(map.getFirstType(100)); //The value associated to the key 100 couldn't be got because it doesn't exist.
+            //System.out.println(map.getSecondType(100)); //The value associated to the key 100 couldn't be got because it doesn't exist.
 
 
             //---------REMOVE - RemoveItemWithNonExistentKey
@@ -47,6 +47,11 @@ public class Main {
             map.removeTwoTypes(6);
             //map.removeTwoTypes(6); //The item couldn't be removed because the key 6 doesn't exist.
 
+            //----------- AUX METHOD: timesRepeatedValue
+            map.addFirstType(20,50);
+            map.addFirstType(21,50);
+            map.addTwoTypes(22,50,"tiger");
+            System.out.println(map.timesRepeatedValue(20));
 
         } catch (ExistingKeyException | RemoveItemWithNonExistentKeyException | NonExistentValueException e) {
             System.out.println(e.getMessage());
