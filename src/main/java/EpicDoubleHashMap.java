@@ -1,4 +1,5 @@
 import customExceptions.ExistingKeyException;
+import customExceptions.RemoveItemWithNonExistentKeyException;
 
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         secondMap = new HashMap<>();
     }
 
-    //--------------ADD
+    //--------------ADD ITEM
     public void addFirstType(K key, V value) throws ExistingKeyException {
         if (firstMap.containsKey(key) || secondMap.containsKey(key)) {
             throw new ExistingKeyException("The value " + value +" couldn't be added because the key " + key + " already has a value assigned to it.");
@@ -34,15 +35,23 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         secondMap.put(key, value2);
     }
 
-    public void removeFirstType(K key) {
+    //-----------REMOVE ITEM
+    public void removeFirstType(K key) throws RemoveItemWithNonExistentKeyException {
+        if (!firstMap.containsKey(key)) {
+            throw new RemoveItemWithNonExistentKeyException("The item couldn't be removed because the key " + key + " doesn't exist.");
+        }
         firstMap.remove(key);
     }
-
-    public void removeSecondType(K key) {
+    public void removeSecondType(K key) throws RemoveItemWithNonExistentKeyException {
+        if (!secondMap.containsKey(key)) {
+            throw new RemoveItemWithNonExistentKeyException("The item couldn't be removed because the key " + key + " doesn't exist.");
+        }
         secondMap.remove(key);
     }
-
-    public void removeTwoTypes(K key) {
+    public void removeTwoTypes(K key) throws RemoveItemWithNonExistentKeyException {
+        if (!firstMap.containsKey(key) || !secondMap.containsKey(key)) {
+            throw new RemoveItemWithNonExistentKeyException("The item couldn't be removed because the key " + key + " doesn't exist.");
+        }
         firstMap.remove(key);
         secondMap.remove(key);
     }
