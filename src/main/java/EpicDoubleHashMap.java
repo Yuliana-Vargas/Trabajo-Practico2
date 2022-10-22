@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class EpicDoubleHashMap<K extends Number, V, T> {
     HashMap<K, V> firstMap;
     HashMap<K, T> secondMap;
+    boolean repeatedValues = false;
 
     public EpicDoubleHashMap() {
         firstMap = new HashMap<>();
@@ -93,6 +94,7 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         for (K key : firstMap.keySet()) {
             if (firstMap.get(key).equals(value) && !secondMap.containsKey(key)) {
                 valueRepeated++;
+                repeatedValues = true;
             }
         }
         if (valueRepeated >= 2) {
@@ -105,6 +107,7 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         for (K key : secondMap.keySet()) {
             if (secondMap.get(key).equals(value) && !firstMap.containsKey(key)) {
                 valueRepeated++;
+                repeatedValues = true;
             }
         }
         if (valueRepeated >= 2) {
@@ -157,5 +160,9 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
             }
         }
         return "The associated value to the key " + key1 + " is repeated " + (valueVRepeated + valueTRepeated - 1) + " times";
+    }
+
+    public boolean repeatedValues() {
+        return repeatedValues;
     }
 }
