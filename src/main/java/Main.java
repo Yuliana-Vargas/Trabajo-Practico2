@@ -1,11 +1,9 @@
-import customExceptions.ExistingKeyException;
-import customExceptions.NonExistentValueException;
-import customExceptions.RemoveItemWithNonExistentKeyException;
+import customExceptions.*;
 
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) throws ExistingKeyException, RemoveItemWithNonExistentKeyException, NonExistentValueException {
+    public static void main(String[] args) throws ExistingKeyException, RemoveItemWithNonExistentKeyException, NonExistentValueException,ItemRepeatedThreeTimesException {
         EpicDoubleHashMap<Integer, Integer, String> map = new EpicDoubleHashMap<>();
         try {
             //-------ADD - ExistingKeyException
@@ -23,14 +21,15 @@ public class Main {
             //map.addSecondType(3,"horse"); //The value horse couldn't be added because the key 3 already has a value assigned to it.
 
 
+
             //---------GET - NonExistentValueException
             System.out.println("The value is " + map.getFirstType(1));
             System.out.println("The value is " + map.getFirstType(3));
             System.out.println("The value is " + map.getSecondType(2));
             System.out.println("The value is " + map.getSecondType(3));
-
             //System.out.println(map.getFirstType(100)); //The value associated to the key 100 couldn't be got because it doesn't exist.
             //System.out.println(map.getSecondType(100)); //The value associated to the key 100 couldn't be got because it doesn't exist.
+
 
 
             //---------REMOVE - RemoveItemWithNonExistentKey
@@ -47,13 +46,31 @@ public class Main {
             map.removeTwoTypes(6);
             //map.removeTwoTypes(6); //The item couldn't be removed because the key 6 doesn't exist.
 
+
+
+            //-------------ItemRepeatedThreeTimesException
+            map.addFirstType(7,12);
+            map.addFirstType(8,12);
+            map.addTwoTypes(9,12,"goat");
+            map.addTwoTypes(10,12,"goat");
+            //map.addFirstType(11,12); //The item with key: 11 and value: 12 can't be added a third time.
+            //map.addTwoTypes(15,12,"goat"); //The item with key: 15 and values: 12, goat can't be added a third time.
+            map.addSecondType(12,"goat");
+            map.addSecondType(13,"goat");
+            //map.addSecondType(14,"goat"); //The item with key: 14 and value: goat can't be added a third time.
+
+
+
             //----------- AUX METHOD: timesRepeatedValue
             map.addFirstType(20,50);
             map.addFirstType(21,50);
             map.addTwoTypes(22,50,"tiger");
             System.out.println(map.timesRepeatedValue(20));
 
-        } catch (ExistingKeyException | RemoveItemWithNonExistentKeyException | NonExistentValueException e) {
+
+
+        } catch (ExistingKeyException | RemoveItemWithNonExistentKeyException | NonExistentValueException |
+                 ItemRepeatedThreeTimesException e) {
             System.out.println(e.getMessage());
         }
 
