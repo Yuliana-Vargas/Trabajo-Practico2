@@ -1,4 +1,5 @@
 import customExceptions.ExistingKeyException;
+import customExceptions.NonExistentValueException;
 import customExceptions.RemoveItemWithNonExistentKeyException;
 
 import java.util.HashMap;
@@ -35,10 +36,16 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
 
 
     //--------------GET ITEM
-    public V getFirstType(K key) {
+    public V getFirstType(K key) throws NonExistentValueException {
+        if (firstMap.get(key) == null) {
+            throw new NonExistentValueException("The value associated to the key " + key +" couldn't be get because it doesn't exist.");
+        }
         return firstMap.get(key);
     }
-    public T getSecondType(K key) {
+    public T getSecondType(K key) throws NonExistentValueException {
+        if (secondMap.get(key) == null) {
+            throw new NonExistentValueException("The value associated to the key " + key +" couldn't be get because it doesn't exist.");
+        }
         return secondMap.get(key);
     }
 

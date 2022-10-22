@@ -1,10 +1,11 @@
 import customExceptions.ExistingKeyException;
+import customExceptions.NonExistentValueException;
 import customExceptions.RemoveItemWithNonExistentKeyException;
 
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) throws ExistingKeyException, RemoveItemWithNonExistentKeyException {
+    public static void main(String[] args) throws ExistingKeyException, RemoveItemWithNonExistentKeyException, NonExistentValueException {
         EpicDoubleHashMap<Integer, Integer, String> map = new EpicDoubleHashMap<>();
         try {
             //-------ADD - ExistingKeyException
@@ -22,11 +23,14 @@ public class Main {
             //map.addSecondType(3,"horse"); //The value horse couldn't be added because the key 3 already has a value assigned to it.
 
 
-            //---------GET
-            System.out.println(map.getFirstType(1));
-            System.out.println(map.getFirstType(3));
-            System.out.println(map.getSecondType(2));
-            System.out.println(map.getSecondType(3));
+            //---------GET - NonExistentValueException
+            System.out.println("The value is " + map.getFirstType(1));
+            System.out.println("The value is " + map.getFirstType(3));
+            System.out.println("The value is " + map.getSecondType(2));
+            System.out.println("The value is " + map.getSecondType(3));
+
+            //System.out.println(map.getFirstType(100)); //The value associated to the key 100 couldn't be get because it doesn't exist.
+            //System.out.println(map.getSecondType(100)); //The value associated to the key 100 couldn't be get because it doesn't exist.
 
 
             //---------REMOVE - RemoveItemWithNonExistentKey
@@ -44,7 +48,7 @@ public class Main {
             //map.removeTwoTypes(6); //The item couldn't be removed because the key 6 doesn't exist.
 
 
-        } catch (ExistingKeyException | RemoveItemWithNonExistentKeyException e) {
+        } catch (ExistingKeyException | RemoveItemWithNonExistentKeyException | NonExistentValueException e) {
             System.out.println(e.getMessage());
         }
 
