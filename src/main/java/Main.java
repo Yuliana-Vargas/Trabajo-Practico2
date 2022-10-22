@@ -1,14 +1,26 @@
+import customExceptions.ExistingKeyException;
+
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExistingKeyException {
         EpicDoubleHashMap<Integer,Integer,String> map = new EpicDoubleHashMap<>();
-        map.addFirstType(5,6);
-        map.addFirstType(3,2);
-        map.addFirstType(9,16);
-        map.addSecondType(5,"cow");
-        map.addSecondType(2,"snake");
-        map.addTwoTypes(7,1,"cat");
+        try {
+            map.addFirstType(1,6);
+            //map.addFirstType(1,2); //The value 2 couldn't be added because the key 1 already has a value assigned to it.
+            //map.addSecondType(1,"cow"); //The value cow couldn't be added because the key 1 already has a value assigned to it.
+
+            map.addSecondType(2,"cat");
+            //map.addSecondType(2,"dog"); //The value dog couldn't be added because the key 2 already has a value assigned to it.
+            //map.addFirstType(2,1); //The value 1 couldn't be added because the key 2 already has a value assigned to it.
+
+            map.addTwoTypes(3,1,"snake");
+            //map.addTwoTypes(3,2,"bee"); //The values 2 and bee couldn't be added because the key 3 already has a value assigned to it.
+            //map.addFirstType(3,1); //The value 1 couldn't be added because the key 3 already has a value assigned to it.
+            //map.addSecondType(3,"horse"); //The value horse couldn't be added because the key 3 already has a value assigned to it.
+        }catch (ExistingKeyException e){
+            System.out.println(e.getMessage());
+        }
 
         HashMap<Integer,Integer> h = map.getFirstMap();
         System.out.println("values of the first map: ");
