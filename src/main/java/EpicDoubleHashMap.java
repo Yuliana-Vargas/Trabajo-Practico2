@@ -79,14 +79,6 @@ public class EpicDoubleHashMap<K extends Number, V, T> {
         secondMap.remove(key);
     }
 
-    public HashMap<K, V> getFirstMap() {
-        return this.firstMap;
-    }
-
-    public HashMap<K, T> getSecondMap() {
-        return this.secondMap;
-    }
-
 
     //-----------ItemRepeatedThreeTimes
     public void firstMapItemRepeatedThreeTimes(K key1, V value) throws ItemRepeatedThreeTimesException {
