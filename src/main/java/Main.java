@@ -75,6 +75,15 @@ public class Main {
             map.addTwoTypes(22, p4, new Game(15));
             System.out.println(map.timesRepeatedValue(20));
 
+            //----------- AUX METHOD: mapWithMoreValues
+
+            map.addSecondType(40, new Game(8)); //First Map has more values than second map.
+
+            //map.addSecondType(41, new Game(8)); //Both maps has the same size.
+
+            //map.addSecondType(42, new Game(100)); //Second Map has more values than first map
+
+            System.out.println(map.mapWithMoreValues());
 
             //----------- AUX METHOD: repeatedValues?
             System.out.println("Are there any repeated values? " + map.repeatedValues());
@@ -85,17 +94,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        HashMap<Integer, Player> h = map.getFirstMap();
-        System.out.println("values of the first map: ");
-        for (Integer i : h.keySet()) {
-            System.out.print(h.get(i) + " ");
-        }
 
-        HashMap<Integer, Game> h2 = map.getSecondMap();
-        System.out.println("\nvalues of the second map: ");
-        for (Integer i : h2.keySet()) {
-            System.out.print(h2.get(i) + " ");
-        }
     }
 
 }
